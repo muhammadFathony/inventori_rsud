@@ -7,7 +7,16 @@ class M_transaksi extends CI_Model {
 		
 		$qty = $obj['qty'];
 		$simpan = $this->db->set('stok', "stok + $qty", FALSE)
-					->where('id_barang', $obj['id_barang'])->where('id_gudang', $obj['gudang'])->update('stok');
+					->where('kode_barang', $obj['kode_barang'])->where('id_gudang', $obj['gudang'])->update('stok');
+
+		return $simpan;
+	}	
+
+	public function stok_out($obj){
+		
+		$qty = $obj['qty'];
+		$simpan = $this->db->set('stok', "stok - $qty", FALSE)
+					->where('kode_barang', $obj['kode_barang'])->where('id_gudang', $obj['gudang'])->update('stok');
 
 		return $simpan;
 	}	
